@@ -9,7 +9,8 @@
 	aa = add --all
 	amend = commit --amend
 	b = branch
-	br = branch
+  br = branch --color --verbose
+  branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--'
 	c = commit
 	changes=diff --name-status -r
 	ci = commit -v
