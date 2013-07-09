@@ -39,6 +39,12 @@
 	st = status
 	w = whatchanged
 
+[color "branch"]
+  current = dim yellow reverse
+  local = blue
+  remote = green
+  commithash = green
+
 [branch]
   # set up git pull to do a rebase instead of merge
   autosetuprebase = always

@@ -1,2 +1,4 @@
 execute pathogen#infect()
 colo detailed
+
+iabbr bpry require 'pry'; binding.pry
