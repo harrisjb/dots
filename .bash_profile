@@ -55,3 +55,4 @@ PS1="${prompt} $ "
 }
 
 PROMPT_COMMAND=prompt_func
+alias prompt='echo $PS1'
