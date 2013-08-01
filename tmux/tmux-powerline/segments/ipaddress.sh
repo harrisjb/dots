@@ -2,6 +2,9 @@
 
 run_segment() {
 ipAddress=$(ifconfig utun0 | grep inet | awk '{print $2}')
-
-echo "${ipAddress}"
+if [[ ! $ipAddress ]]; then
+  echo "ⓛ  No VPN connection!"
+else
+  echo "ⓛ ${ipAddress}"
+fi
 }

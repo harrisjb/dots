@@ -3,6 +3,7 @@
 # Source lib to get the function get_tmux_pwd
 source "${TMUX_POWERLINE_DIR_LIB}/tmux_adapter.sh"
 
+branch_symbol="⭠"
 git_colour="5"
 svn_colour="220"
 hg_colour="45"
@@ -51,4 +52,39 @@ __parse_git_branch() {
 	branch=${branch##*/}
 
 	echo  -n "#[fg=colour${git_colour}]${branch_symbol} #[fg=colour${TMUX_POWERLINE_CUR_SEGMENT_FG}]${branch}"
+}
+
+# Show SVN branch.
+__parse_svn_branch() {
+	type svn >/dev/null 2>&1
+	if [ "$?" -ne 0 ]; then
+		return
+	fi
+
+	local svn_info=$(svn info 2>/dev/null)
+	if [ -z "${svn_info}" ]; then
+		return
+	fi
+
+
+	local svn_root=$(echo "${svn_info}" | sed -ne 's#^Repository Root: ##p')
+	local svn_url=$(echo "${svn_info}" | sed -ne 's#^URL: ##p')
+
+	local branch=$(echo "${svn_url}" | egrep -o '[^/]+$')
+	echo "#[fg=colour${svn_colour}]${branch_symbol} #[fg=colour${TMUX_POWERLINE_CUR_SEGMENT_FG}]${branch}"
+}
+
+__parse_hg_branch() {
+	type hg >/dev/null 2>&1
+	if [ "$?" -ne 0 ]; then
+		return
+	fi
+
+	summary=$(hg summary)
+	if [ "$?" -ne 0 ]; then
+		return
+	fi
+
+	local branch=$(echo "$summary" | grep 'branch:' | cut -d ' ' -f2)
+	echo  "#[fg=colour${hg_colour}]${branch_symbol} #[fg=colour${TMUX_POWERLINE_CUR_SEGMENT_FG}]${branch}"
 }

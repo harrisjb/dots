@@ -1,19 +1,29 @@
 # Prints the current weather in Celsius, Fahrenheits or lord Kelvins. The forecast is cached and updated with a period of $update_period.
 
 # The update period in seconds.
-update_period=600
+update_period=5
 
 TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER_DEFAULT="yahoo"
-TMUX_POWERLINE_SEG_WEATHER_UNIT_DEFAULT="c"
-TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD_DEFAULT="600"
-if shell_is_bsd; then
-    TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT="/usr/local/bin/grep"
-else
+TMUX_POWERLINE_SEG_WEATHER_UNIT_DEFAULT="f"
+TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD_DEFAULT="10"
+#alexandria
+TMUX_POWERLINE_SEG_WEATHER_LOCATION="2353019"
+#austin
+#TMUX_POWERLINE_SEG_WEATHER_LOCATION="2357536"
+#if shell_is_bsd; then
+    #TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT="/usr/local/bin/grep"
+#else
     TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT="grep"
-fi
+#fi
 
 
 generate_segmentrc() {
+export TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER="${TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER_DEFAULT}"
+export TMUX_POWERLINE_SEG_WEATHER_UNIT="${TMUX_POWERLINE_SEG_WEATHER_UNIT_DEFAULT}"
+# How often to update the weather in seconds.
+export TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD="${TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD_DEFAULT}"
+# Name of GNU grep binary if in PATH, or path to it.
+export TMUX_POWERLINE_SEG_WEATHER_GREP="${TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT}"
 	read -d '' rccontents  << EORC
 # The data provider to use. Currently only "yahoo" is supported.
 export TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER="${TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER_DEFAULT}"
@@ -28,14 +38,14 @@ export TMUX_POWERLINE_SEG_WEATHER_GREP="${TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAUL
 # 1. Go to Yahoo weather http://weather.yahoo.com/
 # 2. Find the weather for you location
 # 3. Copy the last numbers in that URL. e.g. "http://weather.yahoo.com/united-states/california/newport-beach-12796587/" has the numbers "12796587"
-export TMUX_POWERLINE_SEG_WEATHER_LOCATION=""
+
 EORC
 	echo "$rccontents"
 }
 
 run_segment() {
 	__process_settings
-	local tmp_file="${TMUX_POWERLINE_DIR_TEMPORARY}/weather_yahoo.txt"
+	local tmp_file="/tmp/weather_yahoo.txt"
 	local weather
 	case "$TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER" in
 		"yahoo") weather=$(__yahoo_weather) ;;
