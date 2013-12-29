@@ -6,6 +6,7 @@ require "awesome_print"
 require "irb/completion"
 require "json"
 require "nokogiri"
+require "nori"
 require "pp"
 require "wirble"
 
@@ -66,7 +67,12 @@ class Object
       klass = self.kind_of?(Class) ? name : self.class.name
       method = [klass, method].compact.join('#')
     end
-    puts `ri '#{method}'`
+    puts `ri '#{method}' `
+  end
+
+  def pbcopy(string)
+    IO.popen('pbcopy', 'w') { |f| f.puts(string) }
+    nil
   end
 end
 

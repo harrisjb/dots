@@ -13,6 +13,10 @@
 --ignore-dir=log
 --ignore-dir=tmp
 --ignore-dir=.bundle
+--ignore-dir=.rvm
+--ignore-dir=vcr_cassettes
+--ignore-dir=data
+--ignore-dir=db
 
 # add filetypes
 --type-add=ruby=.haml,.rake,.rsel,.builder
@@ -23,3 +27,7 @@
 # set filetypes
 --type-set=javascript=.coffee
 --type-set=textile=.textile
+
+#ignore filetypes
+--type-set=PDF=.pdf
+--noPDF

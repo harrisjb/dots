@@ -2,13 +2,29 @@ require "rubygems"
 
 require "active_record"
 module ActiveRecord; end
-require "awesome_print"
+#require "awesome_print"
 require "irb/completion"
 require "json"
 require "nokogiri"
 require "pp"
 
-Pry.print = proc { |output, value| output.puts value.ai }
+begin
+  require 'awesome_print'
+  Pry.print = proc do |output, value|
+    if value.is_a?(Nori::StringWithAttributes)
+      output.puts value.to_s
+    elsif value.is_a?(Array) && value.first.is_a?(Hash)
+      value.each do |h|
+        output.puts h.each { |k, v| v.to_s }
+      end
+    else
+      output.puts value.ai
+    end
+  end
+rescue LoadError => e
+  puts "no awesome_print :( ...Error: #{e}"
+end
+
 # Load 'awesome_print'
 #begin
 #  require 'awesome_print'
@@ -18,17 +34,17 @@ Pry.print = proc { |output, value| output.puts value.ai }
 #rescue LoadError => err
 #end
 
-# Load 'hirb'
-begin
-  require 'hirb'
+ #Load 'hirb'
+#begin
+  #require 'hirb'
 
-  Pry.config.print = proc do |output, value|
-    Hirb::View.view_or_page_output(value) || Pry::DEFAULT_PRINT.call(output, value)
-  end
+  #Pry.config.print = proc do |output, value|
+    #Hirb::View.view_or_page_output(value) || Pry::DEFAULT_PRINT.call(output, value)
+  #end
 
-  Hirb.enable
-rescue LoadError => err
-end
+  #Hirb.enable
+#rescue LoadError => err
+#end
 
 # Launch Pry with access to the entire Rails stack
 rails = File.join(Dir.getwd, 'config', 'environment.rb')
@@ -48,15 +64,18 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
 
   # Rails' pry prompt
   env = ENV['RAILS_ENV'] || Rails.env
+  app = ENV['SE_APP_NAME'] || Rails.application.class.parent_name.downcase
   rails_root = File.basename(Dir.pwd)
 
   rails_env_prompt = case env
     when 'development'
-      '[DEV]'
-    when 'production'
-      '[PROD]'
+      "#{app.upcase}" + ' [DEV]'
+    when 'production' && app == "ship-it-staging"
+      "#{app.upcase}" + ' [STAGING]'
+    when 'production' && app == "ship-it"
+      "#{app.upcase}" + ' [PROD]'
     else
-      "[#{env.upcase}]"
+      "#{app.upcase} [#{env.upcase}]"
     end
 
   prompt = '%s %s %s:%s'

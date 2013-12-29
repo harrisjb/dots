@@ -1,11 +1,11 @@
-source /Users/jsh/.bashrc
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+source /Users/jharris/.rvm/scripts/rvm
+source /Users/jharris/.bashrc
 homebrew=/usr/local/bin:/usr/local/sbin
 export PATH=$homebrew:$PATH
+export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 export EDITOR=vi
-PATH=/usr/local/mysql/bin:/usr/local/bin:$PATH
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-source /Users/jsh/.rvm/scripts/rvm
+PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 
 # Color Constants
 
@@ -56,3 +56,12 @@ PS1="${prompt} $ "
 
 PROMPT_COMMAND=prompt_func
 alias prompt='echo $PS1'
+
+##
+# Your previous /Users/jharris/.bash_profile file was backed up as /Users/jharris/.bash_profile.macports-saved_2013-10-16_at_10:23:11
+##
+
+# MacPorts Installer addition on 2013-10-16_at_10:23:11: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
