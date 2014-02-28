@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/JoshuaHarris/work/iris/spec/support'
+let g:netrw_dirhist_2='/Users/JoshuaHarris/work/iris/spec/factories'
+let g:netrw_dirhist_3='/Users/JoshuaHarris/work/iris/spec/support'
+let g:netrw_dirhist_4='/Users/JoshuaHarris/side/dots/.git'

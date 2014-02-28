@@ -1,0 +1,80 @@
+[user]
+	name = Josh Harris
+	email = harrisjb1@gmail.com
+
+[advice]
+  #statusHints = false
+
+[alias]
+	aa = add --all
+	amend = commit --amend
+	b = branch
+  br = branch --color --verbose
+  branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--'
+	c = commit
+	changes=diff --name-status -r
+	ci = commit -v
+	co = checkout
+	dc = diff --cached
+	df = diff
+	di = diff
+	diffstat=diff --stat -r
+	head = !git l -1
+	h = !git head
+	ign = ls-files -o -i --exclude-standard
+	la = !git l --all
+	lc = log ORIG_HEAD.. --stat --no-merges --pretty=format:'%Cred%h%Creset %Cgreen(%cr) %C(bold blue)<%an>:\n%C(yellow)%d%Creset %s %Creset\n'
+	l = "!git_pretty_log"
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lg = log -p
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lp = log -p
+	ls = ls-files
+	pom = push origin master
+	pullff = pull --ff-only
+	ra = !git r --all
+	r = !git l -30
+	s = status -s
+	st = status
+	w = whatchanged
+
+[color "branch"]
+  current = dim yellow reverse
+  local = blue
+  remote = green
+  commithash = green
+
+[branch]
+  # set up git pull to do a rebase instead of merge
+  #autosetuprebase = always
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = auto
+
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = /usr/bin/vim
+  pager = less -r
+	# some systems set $LESS, which causes git to refuse to override.
+
+[diff]
+  tool = vimdiff
+  # Detect renames of files
+  renames = true
+
+[grep]
+  lineNumber = true
+  extendedRegexp = true
+
+[interactive]
+	singlekey = true
+
+[merge]
+	tool = vimdiff
+
+[push]
+	default = upstream

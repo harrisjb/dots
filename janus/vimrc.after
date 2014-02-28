@@ -1,0 +1,25 @@
+execute pathogen#infect()
+colo detailed
+
+iabbr bpry require 'pry'; binding.pry
+iabbr %% <% %>
+iabbr =%% <%= %>
+iabbr ipol "#{}"
+iabbr notnil .should_not be_nil
+iabbr spcf specify { something }
+iabbr expct expect { something }
+iabbr let let(:something) { attrs }
+iabbr descr describe "#method_name" do
+\<CR>    context "context_name" do
+\<CR>      let(:scenario) do
+\<CR>      end
+\<CR>    pending { scenario.should }
+\<CR>    end
+\<CR>  end
+iabbr arscope scope :scope_name, -> { where(attr: true) }
+iabbr sqlscope scope :scope_name, -> (attr) { where("attr < ?", arg1) } #Post.scope_name(arg1)
+set wrap
+set rtp+=~/.janus/powerline/powerline/bindings/vim
+let g:Powerline_symbols = "fancy"
+set guifont='/Library/Fonts/Menlo\ Bold\ for\ Powerline.ttf':h14
+set cc=80

@@ -1,0 +1,13 @@
+set guifont=Inconsolata-dz\ for\ Powerline:h16
+
+syntax enable
+set background=dark
+colorscheme solarized
+"set transparency=8
+
+set guioptions=egmrt
+
+"set colorcolumn=80
+"set colorcolumn=80
+execute "set colorcolumn=" . join(range(81,335), ',')
+highlight ColorColumn guibg=#194550
