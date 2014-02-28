@@ -1,25 +1,28 @@
 # Prints the current weather in Celsius, Fahrenheits or lord Kelvins. The forecast is cached and updated with a period of $update_period.
 
 # The update period in seconds.
-update_period=5
+update_period=600
 
 TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER_DEFAULT="yahoo"
 TMUX_POWERLINE_SEG_WEATHER_UNIT_DEFAULT="f"
-TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD_DEFAULT="10"
+TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD_DEFAULT="600"
+
 #alexandria
 TMUX_POWERLINE_SEG_WEATHER_LOCATION="2353019"
+
 #austin
 #TMUX_POWERLINE_SEG_WEATHER_LOCATION="2357536"
+
 #if shell_is_bsd; then
-    #TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT="/usr/local/bin/grep"
+#TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT="/usr/bin/grep"
 #else
-    TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT="grep"
+TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT="/usr/local/Cellar/grep/2.16/bin/ggrep"
 #fi
 
 
 generate_segmentrc() {
 export TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER="${TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER_DEFAULT}"
-export TMUX_POWERLINE_SEG_WEATHER_UNIT="${TMUX_POWERLINE_SEG_WEATHER_UNIT_DEFAULT}"
+export TMUX_POWERLINE_SEG_WEATHER_UNIT=" ${TMUX_POWERLINE_SEG_WEATHER_UNIT_DEFAULT}"
 # How often to update the weather in seconds.
 export TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD="${TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD_DEFAULT}"
 # Name of GNU grep binary if in PATH, or path to it.
@@ -139,42 +142,42 @@ __get_condition_symbol() {
 			hourmin=$(date +%H%M)
 			if [ "$hourmin" -ge "$sunset" -o "$hourmin" -le "$sunrise" ]; then
 				#echo "☽"
-				echo "☾"
+				echo "☾ "
 			else
-				#echo "☀"
-				echo "☼"
+				echo "☀ "
+				#echo "☼ "
 			fi
 			;;
 		"rain" | "mixed rain and snow" | "mixed rain and sleet" | "freezing drizzle" | "drizzle" | "light drizzle" | "freezing rain" | "showers" | "mixed rain and hail" | "scattered showers" | "isolated thundershowers" | "thundershowers" | "light rain with thunder" | "light rain" | "rain and snow")
-			#echo "☂"
-			echo "☔"
+			echo "☂  "
+			echo "☔  "
 			;;
 		"snow" | "mixed snow and sleet" | "snow flurries" | "light snow showers" | "blowing snow" | "sleet" | "hail" | "heavy snow" | "scattered snow showers" | "snow showers" | "light snow" | "snow/windy" | "snow grains" | "snow/fog")
-			#echo "☃"
-			echo "❅"
+			echo "☃ "
+			echo "❅ "
 			;;
 		"cloudy" | "mostly cloudy" | "partly cloudy" | "partly cloudy/windy")
-			echo "☁"
+			echo "☁ "
 			;;
 		"tornado" | "tropical storm" | "hurricane" | "severe thunderstorms" | "thunderstorms" | "isolated thunderstorms" | "scattered thunderstorms")
-			#echo "⚡"
-			echo "☈"
+			echo "⚡ "
+			#echo "☈ "
 			;;
 		"dust" | "foggy" | "fog" | "haze" | "smoky" | "blustery" | "mist")
-			#echo "♨"
-			#echo "﹌"
-			echo "〰"
+			echo "♨ "
+			#echo "﹌ "
+			#echo "〰 "
 			;;
 		"windy" | "fair/windy")
-			#echo "⚐"
-			echo "⚑"
+			#echo "⚐ "
+			echo "⚑ "
 			;;
 		"clear" | "fair" | "cold")
 			hourmin=$(date +%H%M)
 			if [ "$hourmin" -ge "$sunset" -o "$hourmin" -le "$sunrise" ]; then
-				echo "☾"
+				echo "☾ "
 			else
-				echo "〇"
+				echo "〇 "
 			fi
 			;;
 		*)
