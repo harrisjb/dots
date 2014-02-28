@@ -1,8 +1,0 @@
-execute pathogen#infect()
-colo detailed
-
-iabbr bpry require 'pry'; binding.pry
-
-set rtp+=~/.janus/powerline/powerline/bindings/vim
-let g:Powerline_symbols = "fancy"
-set guifont='/Library/Fonts/Menlo\ Bold\ for\ Powerline.ttf':h14
