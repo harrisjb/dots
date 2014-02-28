@@ -67,6 +67,14 @@ Pig
 
 Storm
 
+Infochimps-labs has a set of tools you can download: ```https://github.com/infochimps-labs/data_science_fun_pack```
+
+```
+git clone git@github.com:infochimps-labs/data_science_fun_pack.git
+
+git submodule init
+```
+
 
 ##DEV ENVIRONMENT:
 
@@ -173,7 +181,10 @@ Download the initial set of powerline-fonts: ```git clone git@github.com:Lokalto
 
 The following link will download Inconsolata-dz-Powerline, which is my default font for vim right now. Hitting URL will immediately download.
 
-```https://gist.github.com/raw/1595572/51bdd743cc1cc551c49457fe1503061b9404183f/Inconsolata-dz-Powerline.otf```
+```
+https://gist.github.com/raw/1595572/51bdd743cc1cc551c49457fe1503061b9404183f/Inconsolata-dz-Powerline.otf
+```
+
 
 After download of font is complete, copy ```otf``` font file to ```powerline-fonts``` directory: ```cp ~/Downloads/Inconsolata-dz-Powerline.otf ~/side/powerline-fonts```
 
