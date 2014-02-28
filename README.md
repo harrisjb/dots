@@ -74,9 +74,9 @@ Postgres.app: http://postgresapp.com/
 
 Homebrew: http://brew.sh/
 
-```ruby```
+```
 -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-```ruby```
+```
 
 ```
 brew install ack gdbm openssl readline autoconf gettext libksba
