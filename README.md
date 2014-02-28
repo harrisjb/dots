@@ -174,9 +174,12 @@ Download the initial set of powerline-fonts: ```git clone git@github.com:Lokalto
 The following link will download Inconsolata-dz-Powerline, which is my default font for vim right now. Hitting URL will immediately download.
 
 ```https://gist.github.com/raw/1595572/51bdd743cc1cc551c49457fe1503061b9404183f/Inconsolata-dz-Powerline.otf```
+
 After download of font is complete, copy ```otf``` font file to ```powerline-fonts``` directory: ```cp ~/Downloads/Inconsolata-dz-Powerline.otf ~/side/powerline-fonts```
 
-Copy your powerline-fonts to your FontBook, or Font Library ```cp -R powerline-fonts/* /Library/Fonts/``` and run fc-cache again ```fc-cache -vf ~/.fonts```
+Copy your powerline-fonts to your FontBook, or Font Library ```cp -R powerline-fonts/* /Library/Fonts/``` and run fc-cache again.
+
+ ```fc-cache -vf ~/.fonts```
 
 To check this, you can now open up your FontBook on a Mac and see all the fonts you
 installed. You can also open Terminal and make one of the Powerline
